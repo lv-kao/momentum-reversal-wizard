@@ -127,10 +127,12 @@ const Analytics = () => {
                     }}
                     labelStyle={{ color: '#e2e8f0' }}
                     itemStyle={{ color: '#e2e8f0' }}
-                    formatter={(value, name, props) => {
-                      if (name === 'Reversal') return [value.toFixed(2), name];
-                      if (name === 'Momentum') return [value.toFixed(2), name];
-                      if (name === 'Alpha Score') return [value.toFixed(2), 'Alpha Score (scaled)'];
+                    formatter={(value, name) => {
+                      if (typeof value === 'number') {
+                        if (name === 'Reversal') return [value.toFixed(2), name];
+                        if (name === 'Momentum') return [value.toFixed(2), name];
+                        if (name === 'Alpha Score') return [(value / 30).toFixed(2), 'Alpha Score (actual)'];
+                      }
                       return [value, name];
                     }}
                     labelFormatter={(value) => {
